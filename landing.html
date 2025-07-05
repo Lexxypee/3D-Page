@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Professional Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background-color: #f8fafc;
+        }
+        
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+        }
+        
+        .card-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg) translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .perspective-container {
+            perspective: 1000px;
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-effect fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-2xl font-bold gradient-text">3D<span class="text-indigo-600">PRO</span></span>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium">Features</a>
+                        <a href="#" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium">Pricing</a>
+                        <a href="#" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <button class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:from-blue-600 hover:to-indigo-700 transition duration-300">
+                        Get Started
+                    </button>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-900 hover:text-indigo-600 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" class="text-gray-900 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#" class="text-gray-900 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Features</a>
+                <a href="#" class="text-gray-900 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Pricing</a>
+                <a href="#" class="text-gray-900 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#" class="text-gray-900 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                <button class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:from-blue-600 hover:to-indigo-700 transition duration-300 mt-2">
+                    Get Started
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        <span class="gradient-text">Transform</span> Your Business With <span class="gradient-text">3D</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 max-w-lg">
+                        Experience the future of digital interaction with our cutting-edge 3D solutions. Elevate your brand with immersive experiences that captivate your audience.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <button class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-600 hover:to-indigo-700 transition duration-300 shadow-lg">
+                            Get Started
+                        </button>
+                        <button class="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:border-indigo-500 hover:text-indigo-600 transition duration-300">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                <div class="perspective-container">
+                    <div class="card-3d bg-white rounded-2xl p-6 shadow-2xl relative overflow-hidden h-96 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-100 to-indigo-100 opacity-50"></div>
+                        <div class="relative z-10 w-full h-full flex items-center justify-center">
+                            <div class="w-64 h-64 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-full opacity-20 absolute -top-20 -left-20"></div>
+                            <div class="w-64 h-64 bg-gradient-to-br from-purple-400 to-pink-600 rounded-full opacity-20 absolute -bottom-20 -right-20"></div>
+                            <div class="floating">
+                                <img src="https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80" 
+                                     alt="3D Product" 
+                                     class="w-full h-auto max-h-80 object-contain rounded-lg shadow-lg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Powerful <span class="gradient-text">Features</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Our platform offers everything you need to create stunning 3D experiences that engage your customers.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="card-3d bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-cube text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">3D Modeling</h3>
+                    <p class="text-gray-600 mb-4">
+                        Create stunning 3D models with our intuitive tools that make the process simple and enjoyable.
+                    </p>
+                    <a href="#" class="text-blue-600 font-medium flex items-center">
+                        Learn more <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="card-3d bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-vr-cardboard text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">VR Integration</h3>
+                    <p class="text-gray-600 mb-4">
+                        Seamlessly integrate your 3D creations with virtual reality for immersive experiences.
+                    </p>
+                    <a href="#" class="text-purple-600 font-medium flex items-center">
+                        Learn more <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="card-3d bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-line text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Analytics</h3>
+                    <p class="text-gray-600 mb-4">
+                        Track engagement and performance with our comprehensive analytics dashboard.
+                    </p>
+                    <a href="#" class="text-indigo-600 font-medium flex items-center">
+                        Learn more <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="perspective-container order-2 md:order-1">
+                    <div class="card-3d bg-gray-800 rounded-2xl p-6 shadow-2xl relative overflow-hidden h-96 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-indigo-900 opacity-50"></div>
+                        <div class="relative z-10 w-full h-full flex items-center justify-center">
+                            <div class="w-64 h-64 bg-gradient-to-br from-blue-600 to-indigo-800 rounded-full opacity-20 absolute -top-20 -left-20"></div>
+                            <div class="w-64 h-64 bg-gradient-to-br from-purple-600 to-pink-800 rounded-full opacity-20 absolute -bottom-20 -right-20"></div>
+                            <div class="floating">
+                                <img src="https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80" 
+                                     alt="3D Product" 
+                                     class="w-full h-auto max-h-80 object-contain rounded-lg shadow-lg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                        <span class="gradient-text">Showcase</span> Your Products in 3D
+                    </h2>
+                    <p class="text-gray-300 mb-8">
+                        Our platform allows you to create photorealistic 3D models of your products that customers can interact with from any device. Increase engagement and conversion rates with immersive experiences.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-3"></i>
+                            <span class="text-gray-300">360° product views that increase customer confidence</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-3"></i>
+                            <span class="text-gray-300">Augmented Reality previews for mobile users</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-3"></i>
+                            <span class="text-gray-300">Customizable environments to match your brand</span>
+                        </li>
+                    </ul>
+                    <button class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-600 hover:to-indigo-700 transition duration-300 shadow-lg">
+                        See Examples
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">What Our <span class="gradient-text">Clients</span> Say</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Don't just take our word for it. Here's what our customers have to say about our 3D solutions.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="card-3d bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Sarah Johnson" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Sarah Johnson</h4>
+                            <p class="text-gray-600 text-sm">CEO, DesignCo</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        "The 3D modeling tools have transformed how we present our designs to clients. Engagement has increased by 300% since we started using this platform."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="card-3d bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Michael Chen</h4>
+                            <p class="text-gray-600 text-sm">CTO, TechSolutions</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        "The VR integration capabilities are unmatched. We've been able to create training simulations that have reduced our onboarding time by 40%."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="card-3d bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Emma Rodriguez" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Emma Rodriguez</h4>
+                            <p class="text-gray-600 text-sm">Marketing Director, RetailPro</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        "Our e-commerce conversion rates have skyrocketed since implementing 3D product views. This platform was worth every penny."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Business with <span class="gradient-text">3D</span>?</h2>
+            <p class="text-xl text-blue-100 mb-8">
+                Join thousands of businesses already revolutionizing their customer experience with our 3D solutions.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition duration-300 shadow-lg">
+                    Start Free Trial
+                </button>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold hover:bg-white hover:text-blue-600 transition duration-300">
+                    Schedule Demo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-4 gradient-text">3D<span class="text-indigo-400">PRO</span></h3>
+                    <p class="text-gray-400 mb-4">
+                        The leading platform for creating immersive 3D experiences that engage customers and drive business growth.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Tutorials</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">API Reference</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-gray-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">123 3D Street, San Francisco, CA 94107</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-gray-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">(555) 123-4567</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-gray-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">info@3dpro.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">
+                    &copy; 2023 3DPRO. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 3D card effect on mouse move
+        const cards3d = document.querySelectorAll('.card-3d');
+        
+        cards3d.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const parallaxElements = document.querySelectorAll('.parallax');
+            
+            parallaxElements.forEach(element => {
+                element.style.backgroundPositionY = -scrollPosition * 0.5 + 'px';
+            });
+        });
+    </script>
+</body>
+</html>
